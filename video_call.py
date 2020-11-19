@@ -9,10 +9,6 @@ clicked = 0
 max_x = 640
 max_y= 480
 faceCascade = cv2.CascadeClassifier("./haarcascade_frontalface_default.xml")
-if vc.isOpened(): # try to get the first frame
-    rval, frame = vc.read()
-else:
-    rval = False
 
 def calculate_x(x):
     top_x = 0
@@ -40,6 +36,11 @@ def calculate_y(y):
         return top_y, bottom_y
     return y+height, y-height
 
+if vc.isOpened(): # try to get the first frame
+    rval, frame = vc.read()
+else:
+    rval = False
+
 while rval:
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = faceCascade.detectMultiScale(
@@ -57,7 +58,6 @@ while rval:
         top_y, bottom_y = calculate_y(y)
         top_x, bottom_x = calculate_x(x)
         cropped = frame[int(bottom_y):int(top_y), int(bottom_x):int(top_x)]
-        # cropped = frame[200:400, 200:600]
     else:
         cropped = frame
     cv2.imshow("preview", cropped)
