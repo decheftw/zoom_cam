@@ -3,6 +3,7 @@
 ## To run:
 1. Clone repo
 2. run python3 video_call.py
+3. Press escape to close the window
 
 ## What it does:
 The app displays a live webcam feed and searches for a face. If it detects 1 face, it will focus on that face and crop the image so that the face is always in the center of the screen, even when it moves. The tracking is fairly responsive, so test it out with some head bops!
