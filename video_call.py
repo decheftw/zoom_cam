@@ -8,21 +8,11 @@ mouseY = 0
 clicked = 0
 max_x = 640
 max_y= 480
-faceCascade = cv2.CascadeClassifier("../FaceDetect/haarcascade_frontalface_default.xml")
+faceCascade = cv2.CascadeClassifier("./haarcascade_frontalface_default.xml")
 if vc.isOpened(): # try to get the first frame
     rval, frame = vc.read()
 else:
     rval = False
-
-
-def draw_circle(event,x,y,flags,param):
-    global mouseX,mouseY,clicked
-    if event == cv2.EVENT_LBUTTONDBLCLK:
-        if clicked == 0:
-            mouseX, mouseY = x,y
-            clicked = 1
-        else:
-            clicked = 0
 
 def calculate_x(x):
     top_x = 0
@@ -71,7 +61,6 @@ while rval:
     else:
         cropped = frame
     cv2.imshow("preview", cropped)
-    cv2.setMouseCallback("preview", draw_circle)
     rval, frame = vc.read()
 
     key = cv2.waitKey(20)
